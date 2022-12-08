@@ -21,10 +21,12 @@ class Vk_id:
         if screen_result.isnumeric() == False:
             resp_id = requests.get(self.url_get_id, params=params).json()
 
-            # Проверка запроса-ответа
+# Проверка запроса-ответа
             response = requests.get(self.url_get_id, params=params).status_code
             if response == 200:
                 print("\nзапрос 1 выполнен (никнейм переведен в id)...")
+            else:
+                exit("На этапе проверки перевода никнейма в id произошла ошибка! Перезапустите программу")
 
 # *****Проверка на корректность***********************************************
             try:
@@ -55,6 +57,9 @@ class Vk_id:
         response = requests.get(self.url_get_photos, params=params).status_code
         if response == 200:
             print("\nзапрос 2 выполнен (получены данные из VK)...")
+        else:
+            exit("На этапе получения данных из VK произошла ошибка! Перезапустите программу")
+
 
 # *****Проверка на корректность***********************************************
         try:

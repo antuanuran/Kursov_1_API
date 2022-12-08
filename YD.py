@@ -32,6 +32,8 @@ class Load_yadisk:
        response = requests.post(self.url_get_file, headers=self.headers, params=params).status_code
        if response == 202:
            print("\nзапрос выполнен (файл загружен)...")
+       else:
+           exit("На этапе загрузки файла произошла ошибка! Перезапустите программу")
 
 
     #Методы создания временной ссылки для загрузки файла
