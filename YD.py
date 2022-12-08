@@ -27,8 +27,7 @@ class Load_yadisk:
 
 
 
-    # ************Методы для загрузки файла с информацией на Яндекс Диск
-
+    #Методы создания временной ссылки для загрузки файла
     def get_link(self, file_name):
         params = {
                     'path': file_name,
@@ -37,7 +36,8 @@ class Load_yadisk:
         response = requests.get(self.url_get_file, headers=self.headers, params=params).json()
         return response['href']
 
-    # Метод загружает файлы  на яндекс диск
+
+    # Метод загрузки файла на яндекс диск
     def upload_file_info(self, disk_n, file_n):
         href = self.get_link(disk_n)
         requests.put(href, data=open(file_n, 'rb'))

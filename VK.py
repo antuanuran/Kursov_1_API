@@ -29,7 +29,7 @@ class Vk_id:
 
     def photo_id(self, screen_result):
         id = self.screen_id(screen_result)
-        print(f'(id) - {id} | Никнейм: @{screen_result} \n')
+        print(f'(id) - {id} \n')
         params = {
                     'access_token': self.token_str,
                     'owner_id': id,
@@ -96,21 +96,6 @@ class Vk_id:
         return dict_name
 
 
-
-    def name_result (self, screen_result):
-        info_files = self.date_like_name_all(screen_result)
-# *************
-        result_dict = {}
-
-        for temp in info_files:
-            result_dict[info_files[temp][0]] = 'file_name'
-            result_dict[info_files[temp][1]] = 'max size   |'
-
-        with open('files_info.txt', 'w') as a:
-            a.writelines(f'Информация по файлам, записанным на диск: \n {result_dict}')
-
-# **********
-        return info_files
 
 
 
