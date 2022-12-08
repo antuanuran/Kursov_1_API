@@ -15,10 +15,9 @@ class LoadYadisk:
         params = {
             'path': name_folder
         }
-        requests.put(self.url_get_folder, headers=self.headers, params=params)
+        response = requests.put(self.url_get_folder, headers=self.headers, params=params)
 
-        response = requests.put(self.url_get_folder, headers=self.headers, params=params).status_code
-        if response == 409:
+        if response.status_code == 409:
             print("\nзапрос 3 выполнен (папка на Яндекс диске создана)...")
 
     def upload_file_post(self, name_disk, link):
@@ -26,10 +25,9 @@ class LoadYadisk:
             'path': name_disk,
             'url': link
         }
-        requests.post(self.url_get_file, headers=self.headers, params=params)
+        response = requests.post(self.url_get_file, headers=self.headers, params=params)
 
-        response = requests.post(self.url_get_file, headers=self.headers, params=params).status_code
-        if response == 202:
+        if response.status_code == 202:
             print("\nзапрос выполнен (файл загружен)...")
         else:
             exit("На этапе загрузки файла произошла ошибка! Перезапустите программу")

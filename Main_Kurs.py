@@ -45,7 +45,12 @@ if __name__ == '__main__':
         if count < count_photo:
             yadisk_instance.upload_file_post(name, url)
             print(name)
-        count += 1
+            count += 1
+
+    if count_photo == count:
+        print("\nВсе фото успешно загружены!")
+    else:
+        print("\nПрограмма успешно загрузила все фото профиля. Вами было введено количество, превышающее фото в профиле.")
 
     # Запуск Метода информационного файла загрузки данных
     name_result(dict_VK_result)
