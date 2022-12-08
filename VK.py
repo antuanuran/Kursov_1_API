@@ -5,7 +5,6 @@ from pprint import pprint
 class Vk_id:
 
     def __init__(self, token):
-        # https://dev.vk.com/method/users.get   |   https://dev.vk.com/method/photos.get
         self.token_str = token
         self.url_get_id = 'https://api.vk.com/method/users.get'
         self.url_get_photos = 'https://api.vk.com/method/photos.get'
@@ -21,7 +20,20 @@ class Vk_id:
 
         if screen_result.isnumeric() == False:
             resp_id = requests.get(self.url_get_id, params=params).json()
-            return resp_id['response'][0]['id']
+
+            # Проверка запроса-ответа
+            response = requests.get(self.url_get_id, params=params).status_code
+            if response == 200:
+                print("\nзапрос 1 выполнен (никнейм переведен в id)...")
+
+# *****Проверка на корректность***********************************************
+            try:
+                return resp_id['response'][0]['id']
+
+            except IndexError:
+                exit("Введен некорректный никнейм, повторите попытку!")
+
+
 
         else:
             return screen_result
@@ -29,7 +41,7 @@ class Vk_id:
 
     def photo_id(self, screen_result):
         id = self.screen_id(screen_result)
-        print(f'(id) - {id} \n')
+        print(f'(id) - {id}')
         params = {
                     'access_token': self.token_str,
                     'owner_id': id,
@@ -39,9 +51,18 @@ class Vk_id:
         }
 
         photo = requests.get(self.url_get_photos, params=params).json()
-        photo_list_all = photo['response']['items']
-        # pprint(photo_list_all)
-        return photo_list_all
+
+        response = requests.get(self.url_get_photos, params=params).status_code
+        if response == 200:
+            print("\nзапрос 2 выполнен (получены данные из VK)...")
+
+# *****Проверка на корректность***********************************************
+        try:
+            photo_list_all = photo['response']['items']
+            return photo_list_all
+
+        except KeyError:
+            exit("Ошибка данных! Запустите программу заново, введите корректные значения")
 
 
     def size_photo(self, screen_result):
