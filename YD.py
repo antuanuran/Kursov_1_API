@@ -19,6 +19,8 @@ class LoadYadisk:
 
         if response.status_code == 409:
             print("\nзапрос 3 выполнен (папка на Яндекс диске создана)...")
+        else:
+            exit(f"На этапе создания папки произошла ошибка, код ошибки {response.status_code}! Перезапустите программу")
 
     def upload_file_post(self, name_disk, link):
         params = {
@@ -30,7 +32,7 @@ class LoadYadisk:
         if response.status_code == 202:
             print("\nзапрос выполнен (файл загружен)...")
         else:
-            exit("На этапе загрузки файла произошла ошибка! Перезапустите программу")
+            exit(f"На этапе загрузки файла произошла ошибка, код ошибки {response.status_code}! Перезапустите программу")
 
     # Методы создания временной ссылки для загрузки файла
     def get_link(self, file_name):
