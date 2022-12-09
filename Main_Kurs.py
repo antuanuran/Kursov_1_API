@@ -1,11 +1,24 @@
 import VK
 import YD
 import configparser
+import json
 
 
 def name_result(result_info_json):
-    with open('files_info.txt', 'w') as a:
-        a.writelines(result_info_json)
+    dict_all = result_info_json
+    list_info = []
+
+    for i in dict_all:
+        a = {}
+        a['file_name'] = dict_all[i][0]
+        a['size'] = dict_all[i][1]
+        list_info.append(a)
+
+    with open('info_files.json', 'w') as a:
+        json.dump(list_info, a)
+
+
+
 
 
 if __name__ == '__main__':
@@ -54,4 +67,6 @@ if __name__ == '__main__':
 
     # Запуск Метода информационного файла загрузки данных
     name_result(dict_VK_result)
-    yadisk_instance.upload_file_info(f'{name_folder_YaDisk}/files_info.txt', 'files_info.txt')
+    yadisk_instance.upload_file_info(f'{name_folder_YaDisk}/info_files.json', 'info_files.json')
+
+

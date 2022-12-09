@@ -17,7 +17,7 @@ class LoadYadisk:
         }
         response = requests.put(self.url_get_folder, headers=self.headers, params=params)
 
-        if response.status_code == 409:
+        if (response.status_code == 409 or response.status_code == 201 or response.status_code == 200) :
             print("\nзапрос 3 выполнен (папка на Яндекс диске создана)...")
         else:
             exit(f"На этапе создания папки произошла ошибка, код ошибки {response.status_code}! Перезапустите программу")
