@@ -111,3 +111,5 @@ class VkPhoto:
                 dict_name[x_date_result] = [f'{x_like}._{x_date_result}.jpg', x_size, x_link]
 
         return dict_name
+
+# Завершили Проект 11.12

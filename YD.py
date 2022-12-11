@@ -47,3 +47,5 @@ class LoadYadisk:
     def upload_file_info(self, disk_n, file_n):
         href = self.get_link(disk_n)
         requests.put(href, data=open(file_n, 'rb'))
+
+# Завершили Проект 11.12

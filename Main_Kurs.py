@@ -69,4 +69,6 @@ if __name__ == '__main__':
     name_result(dict_VK_result)
     yadisk_instance.upload_file_info(f'{name_folder_YaDisk}/info_files.json', 'info_files.json')
 
+# Завершили Проект 11.12
+
 
